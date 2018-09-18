@@ -75,7 +75,8 @@ public class JFrameEmpleados extends javax.swing.JFrame {
     }
     
     public void limpiarText(){
-        txtnombre.setText("");
+        txtId.setText("");
+        txtNom.setText("");
         txtPaterno.setText("");
         txtMaterno.setText("");
         txtCargo.setText("");
@@ -266,6 +267,11 @@ public class JFrameEmpleados extends javax.swing.JFrame {
         });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -408,6 +414,15 @@ public class JFrameEmpleados extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Seleccione un empleado");
         }
     }//GEN-LAST:event_tablaEmpMantenimientoMouseClicked
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int fila = tablaEmpMantenimiento.getSelectedRow();
+        if (fila>=0){
+            EmpleadoDAO.eliminar(Integer.parseInt(txtId.getText()));
+            limpiarText();
+            cargarEmpleadosMant();
+        }else JOptionPane.showMessageDialog(this, "Seleccione un empleado");
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
